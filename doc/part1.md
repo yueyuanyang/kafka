@@ -16,6 +16,11 @@
    
 ### kafka 架构
 入学习Kafka之前，必须了解主题（Topic）、经纪人（Broker）、生产者（Producer）或者发布者，以及消费者（Consumer）或者订阅者等主要术语。 下图说明了主要术语，表格详细描述2图表组件。
-![kafka_1](http3://github.com/yueyuanyang/kafka/tree/master/img/kafka_1.jpg)
+
+![kafka_1](https://github.com/yueyuanyang/kafka/tree/master/img/kafka_1.jpg)
+
 ![kafka_2](https://github.com/yueyuanyang/kafka/tree/master/img/kafka_2.jpg)
+
 ![kafka_3](https://github.com/yueyuanyang/kafka/tree/master/img/kafka_3.jpg)
+
+
