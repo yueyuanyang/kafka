@@ -90,9 +90,13 @@ kafka.tools.KafkaMigrationTool和kafka.tools.MirrorMaker。第一个主要是用
 而后者可以同步两个Kafka集群的数据(https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27846330)。
 都是从原端消费Messages，然后发布到目标端。
 
-./kafka-run-class.sh kafka.tools.KafkaMigrationTool --kafka.07.jar kafka-0.7.19.jar --zkclient.01.jar zkclient-0.2.0.jar --num.producers 16 --consumer.config=sourceCluster2Consumer.config --producer.config=targetClusterProducer.config --whitelist=.*
+./kafka-run-class.sh kafka.tools.KafkaMigrationTool --kafka.07.jar kafka-0.7.19.jar --zkclient.01.jar 
+zkclient-0.2.0.jar --num.producers 16 --consumer.config=sourceCluster2Consumer.config 
+--producer.config=targetClusterProducer.config --whitelist=.*
  
-./kafka-run-class.sh kafka.tools.MirrorMaker --consumer.config sourceCluster1Consumer.config --consumer.config sourceCluster2Consumer.config --num.streams 2 --producer.config targetClusterProducer.config --whitelist=".*"
+./kafka-run-class.sh kafka.tools.MirrorMaker --consumer.config sourceCluster1Consumer.config 
+--consumer.config sourceCluster2Consumer.config --num.streams 2 
+--producer.config targetClusterProducer.config --whitelist=".*"
 
 5. 日志重放工具
 
@@ -118,3 +122,4 @@ USAGE: kafka.tools.UpdateOffsetsInZK$ [earliest | latest] consumer.properties to
 
 ```
 
+> http://blog.csdn.net/wuliusir/article/details/51062904
