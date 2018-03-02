@@ -205,7 +205,7 @@ Example:
 }
 ```
 
-### 7. Consumer owner:
+### 7. Consumer owner
 
 /consumers/[groupId]/owners/[topic]/[partitionId] -> consumerIdString + threadId索引编号
 
@@ -217,3 +217,161 @@ b) 然后在"Consumer id 注册"节点下注册一个watch用来监听当前grou
 只要此znode path下节点列表变更,都会触发此group下consumer的负载均衡.(比如一个consumer失效,那么其他consumer接管partitions).
 
 c) 在"Broker id 注册"节点下,注册一个watch用来监听broker的存活情况;如果broker列表变更,将会触发所有的groups下的consumer重新balance.
+
+### 8. Consumer offset
+
+/consumers/[groupId]/offsets/[topic]/[partitionId] -> long (offset)
+
+用来跟踪每个consumer目前所消费的partition中最大的offset
+
+此znode为持久节点,可以看出offset跟group_id有关,以表明当消费者组(consumer group)中一个消费者失效,
+
+重新触发balance,其他consumer可以继续消费.
+
+### 9. Re-assign partitions
+
+/admin/reassign_partitions
+
+```
+{
+   "fields":[
+      {
+         "name":"version",
+         "type":"int",
+         "doc":"version id"
+      },
+      {
+         "name":"partitions",
+         "type":{
+            "type":"array",
+            "items":{
+               "fields":[
+                  {
+                     "name":"topic",
+                     "type":"string",
+                     "doc":"topic of the partition to be reassigned"
+                  },
+                  {
+                     "name":"partition",
+                     "type":"int",
+                     "doc":"the partition to be reassigned"
+                  },
+                  {
+                     "name":"replicas",
+                     "type":"array",
+                     "items":"int",
+                     "doc":"a list of replica ids"
+                  }
+               ],
+            }
+            "doc":"an array of partitions to be reassigned to new replicas"
+         }
+      }
+   ]
+}
+  
+Example:
+{
+  "version": 1,
+  "partitions":
+     [
+        {
+            "topic": "Foo",
+            "partition": 1,
+            "replicas": [0, 1, 3]
+        }
+     ]           
+}
+```
+
+### 10. Preferred replication election
+
+/admin/preferred_replica_election
+
+```
+{
+   "fields":[
+      {
+         "name":"version",
+         "type":"int",
+         "doc":"version id"
+      },
+      {
+         "name":"partitions",
+         "type":{
+            "type":"array",
+            "items":{
+               "fields":[
+                  {
+                     "name":"topic",
+                     "type":"string",
+                     "doc":"topic of the partition for which preferred replica election should be triggered"
+                  },
+                  {
+                     "name":"partition",
+                     "type":"int",
+                     "doc":"the partition for which preferred replica election should be triggered"
+                  }
+               ],
+            }
+            "doc":"an array of partitions for which preferred replica election should be triggered"
+         }
+      }
+   ]
+}
+ 
+例子:
+ 
+{
+  "version": 1,
+  "partitions":
+     [
+        {
+            "topic": "Foo",
+            "partition": 1         
+        },
+        {
+            "topic": "Bar",
+            "partition": 0         
+        }
+     ]            
+}
+
+```
+
+### 11. 删除topics
+
+/admin/delete_topics
+```
+Schema:
+{ "fields":
+    [ {"name": "version", "type": "int", "doc": "version id"},
+      {"name": "topics",
+       "type": { "type": "array", "items": "string", "doc": "an array of topics to be deleted"}
+      } ]
+}
+ 
+例子:
+{
+  "version": 1,
+  "topics": ["foo", "bar"]
+}
+```
+
+Topic配置
+
+/config/topics/[topic_name]
+
+```
+{
+  "version": 1,
+  "config": {
+    "config.a": "x",
+    "config.b": "y",
+    ...
+  }
+}
+
+```
+
+>  请注明转载自:http://blog.csdn.NET/lizhitao/article/details/23744675
