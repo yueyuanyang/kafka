@@ -1,6 +1,6 @@
 ### kafka常用命令
 以下是kafka常用命令行总结：
-
+```
 0.查看有哪些主题： ./kafka-topics.sh --list --zookeeper 127.0.0.1:12181
 
 1.查看topic的详细信息
@@ -35,3 +35,4 @@ shutdown broker
 10、查看consumer组内消费的offset
 ./kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper localhost:2181 --group test --topic test
  ./kafka-consumer-offset-checker.sh --zookeeper 192.168.0.201:12181 --group group1 --topic group1
+```
