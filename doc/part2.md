@@ -42,9 +42,15 @@
 ### kafka 管理工具命令
 Kafka内部提供了许多管理脚本
 ```
-1. 消费者偏移量检查
+1. 消费者偏移量检查(Consumer Offset Checker)
 kafka-consumer-offset-checker.sh，会显示出Consumer的Group、Topic、分区ID、
 分区对应已经消费的Offset、logSize大小，Lag以及Owner等信息
-./kafka-consumer-offset-checker.sh --zookeeper www.iteblog.com:2181 --topic test --group spark --broker-info
+./kafka-consumer-offset-checker.sh --zookeeper 127.0.0.1:2181 --topic test --group group1 --broker-info
+
+2. 导出日志(Dump Log Segment)
+有时候我们需要验证日志索引是否正确，或者仅仅想从log文件中直接打印消息，我们可以使用 kafka.tools.DumpLogSegments类
+来实现，先来看看它需要的参数
+>
+
 ```
 
