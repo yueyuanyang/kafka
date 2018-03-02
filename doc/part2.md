@@ -61,9 +61,9 @@ group1    test       1   34670481        34678029        7548            none
 显示日志内容
 ./kafka-run-class.sh kafka.tools.DumpLogSegments --files /data/A/test-4/00000000000034245135.log --print-data-log
 
-我们在使用kafka.tools.DumpLogSegments的时候必须输入--files，这个参数指的就是Kafka中Topic分区所在的绝对路径。分区所在的目录由config/server.properties文件中log.dirs参数决定
-这个命令将Kafka中Message中Header的相关信息和偏移量都显示出来了，但是没有看到日志的内容，我们可以通过--print-data-log来设置。
-如果需要查看多个日志文件，可以以逗号分割。
+我们在使用kafka.tools.DumpLogSegments的时候必须输入--files，这个参数指的就是Kafka中Topic分区所在的绝对路径。
+分区所在的目录由config/server.properties文件中log.dirs参数决定这个命令将Kafka中Message中Header的相关信息
+和偏移量都显示出来了，但是没有看到日志的内容，我们可以通过--print-data-log来设置。如果需要查看多个日志文件，可以以逗号分割。
 
  2. 导出Zookeeper中Group相关的偏移量
  
@@ -80,7 +80,8 @@ group1    test       1   34670481        34678029        7548            none
  
  bin/kafka-run-class.sh kafka.tools.JmxTool --jmx-url service:jmx:rmi:///jndi/rmi://www.silent.com:1099/jmxrmi
  
- 运行上面命令前提是在启动kafka集群的时候指定export JMX_PORT= ，这样才会开启JMX。然后就可以通过上面命令打印出Kafka所有的metrics信息
+ 运行上面命令前提是在启动kafka集群的时候指定export JMX_PORT= ，这样才会开启JMX。
+ 然后就可以通过上面命令打印出Kafka所有的metrics信息
  
  
  
