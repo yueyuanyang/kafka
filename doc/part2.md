@@ -8,7 +8,8 @@
 ./kafka-topics.sh -zookeeper 127.0.0.1:2181 -describe -topic test
 
 2、为topic增加副本
-./kafka-reassign-partitions.sh -zookeeper 127.0.0.1:2181 -reassignment-json-file json/partitions-to-move.json -execute
+./kafka-reassign-partitions.sh -zookeeper 127.0.0.1:2181 -reassignment-json-file json/partitions-to-move.json 
+-execute
 
 3、创建topic
 ./kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic testKJ1
@@ -26,8 +27,8 @@
 ./kafka-server-start.sh -daemon ../config/server.properties 
 
 8、下线broker
-./kafka-run-class.sh kafka.admin.ShutdownBroker --zookeeper 127.0.0.1:2181 --broker #brokerId# --num.retries 3 --retry.interval.ms 60
-shutdown broker
+./kafka-run-class.sh kafka.admin.ShutdownBroker --zookeeper 127.0.0.1:2181 --broker #brokerId# --num.retries 3 
+--retry.interval.ms 60 shutdown broker
 
 9、删除topic
 ./kafka-run-class.sh kafka.admin.DeleteTopicCommand --topic testKJ1 --zookeeper 127.0.0.1:2181
@@ -42,7 +43,8 @@ shutdown broker
 Kafka内部提供了许多管理脚本
 ```
 1. 消费者偏移量检查
-kafka-consumer-offset-checker.sh，会显示出Consumer的Group、Topic、分区ID、分区对应已经消费的Offset、logSize大小，Lag以及Owner等信息
+kafka-consumer-offset-checker.sh，会显示出Consumer的Group、Topic、分区ID、
+分区对应已经消费的Offset、logSize大小，Lag以及Owner等信息
 ./kafka-consumer-offset-checker.sh --zookeeper www.iteblog.com:2181 --topic test --group spark --broker-info
 ```
 
