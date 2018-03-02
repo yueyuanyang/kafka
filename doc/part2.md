@@ -80,10 +80,41 @@ group1    test       1   34670481        34678029        7548            none
  
  bin/kafka-run-class.sh kafka.tools.JmxTool --jmx-url service:jmx:rmi:///jndi/rmi://www.silent.com:1099/jmxrmi
  
- 运行上面命令前提是在启动kafka集群的时候指定export JMX_PORT= ，这样才会开启JMX。
- 然后就可以通过上面命令打印出Kafka所有的metrics信息
+ 运行上面命令前提是在启动kafka集群的时候指定export JMX_PORT= , 这样才会开启JMX。
+ 然后就可以通过上面命令打印出Kafka所有的metrics信息。
  
+ 4. Kafka数据迁移工具
  
+这个工具主要有两个：
+kafka.tools.KafkaMigrationTool和kafka.tools.MirrorMaker。第一个主要是用于将Kafka 0.7上面的数据迁移到Kafka0.8(https://cwiki.apache.org/confluence/display/KAFKA/Migrating+from+0.7+to+0.8);
+而后者可以同步两个Kafka集群的数据(https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27846330)。
+都是从原端消费Messages，然后发布到目标端。
+
+./kafka-run-class.sh kafka.tools.KafkaMigrationTool --kafka.07.jar kafka-0.7.19.jar --zkclient.01.jar zkclient-0.2.0.jar --num.producers 16 --consumer.config=sourceCluster2Consumer.config --producer.config=targetClusterProducer.config --whitelist=.*
  
+./kafka-run-class.sh kafka.tools.MirrorMaker --consumer.config sourceCluster1Consumer.config --consumer.config sourceCluster2Consumer.config --num.streams 2 --producer.config targetClusterProducer.config --whitelist=".*"
+
+5. 日志重放工具
+
+这个工具主要作用是从一个Kafka集群里面读取指定Topic的消息，并将这些消息发送到其他集群的指定topic中：
+ bin/kafka-replay-log-producer.sh 
+
+6. Simple Consume脚本
+
+kafka-simple-consumer-shell.sh 工具主要是使用Simple Consumer API从指定Topic的分区读取数据并打印在终端：
+
+bin/kafka-simple-consumer-shell.sh --broker-list www.iteblog.com:9092 --topic test --partition 0
+
+7. 更新Zookeeper中的偏移量
+
+kafka.tools.UpdateOffsetsInZK 工具可以更新Zookeeper中指定Topic所有分区的偏移量，可以指定成 earliest或者latest：
+
+./kafka-run-class.sh kafka.tools.UpdateOffsetsInZK
+
+USAGE: kafka.tools.UpdateOffsetsInZK$ [earliest | latest] consumer.properties topic
+
+
+需要指定是更新成earliest或者latest，consumer.properties文件的路径以及topic的名称
+
 ```
 
