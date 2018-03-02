@@ -1,4 +1,5 @@
-### kafka常用命令
+## kafka常用命令
+### kafka 操作命令
 以下是kafka常用命令行总结：
 ```
 0.查看有哪些主题： ./kafka-topics.sh --list --zookeeper 127.0.0.1:12181
@@ -36,3 +37,5 @@ shutdown broker
 ./kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper localhost:2181 --group test --topic test
  ./kafka-consumer-offset-checker.sh --zookeeper 192.168.0.201:12181 --group group1 --topic group1
 ```
+
+### kafka 管理工具命令
