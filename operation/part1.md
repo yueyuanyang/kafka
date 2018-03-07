@@ -94,7 +94,8 @@ Kafka broker 内部不同数据盘之间可以自由迁移分区数据目录。�
 执行重新分配命令：
 
 ```
-./kafka-reassign-partitions.sh --zookeeper vm-gs-201:2181 --reassignment-json-file /tmp/move_kafka_topic_result.json --execute
+./kafka-reassign-partitions.sh --zookeeper vm-gs-201:2181 --reassignment-json-file 
+/tmp/move_kafka_topic_result.json --execute
 ```
 
 2.4 查看分区数据重新分布进度
@@ -102,7 +103,8 @@ Kafka broker 内部不同数据盘之间可以自由迁移分区数据目录。�
 检查分配的状态，执行命令：
 
 ```
-./kafka-reassign-partitions.sh --zookeeper vm-gs-201:2181 --reassignment-json-file /tmp/move_kafka_topic_result.json --verify
+./kafka-reassign-partitions.sh --zookeeper vm-gs-201:2181 --reassignment-json-file 
+/tmp/move_kafka_topic_result.json --verify
 ```
 
 2.5 再次获取test_topic的分区分布情况
@@ -118,6 +120,6 @@ Kafka broker 内部不同数据盘之间可以自由迁移分区数据目录。�
 - Kafka 不同broker之前可以迁移数据，使用kafka自带的kafka-reassign-partitions.sh脚本工具实现。
 
 
-> https://www.toutiao.com/a6513706403587162638/tt_from=mobile_qq&utm_campaign=client_share&timestamp=1520390042&app=news_article&utm_source=mobile_qq&iid=27068802467&utm_medium=toutiao_ios
+> 原文：https://www.toutiao.com/a6513706403587162638/tt_from=mobile_qq&utm_campaign=client_share&timestamp=1520390042&app=news_article&utm_source=mobile_qq&iid=27068802467&utm_medium=toutiao_ios
 
 
