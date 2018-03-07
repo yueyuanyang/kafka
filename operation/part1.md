@@ -118,6 +118,6 @@ Kafka broker 内部不同数据盘之间可以自由迁移分区数据目录。�
 - Kafka 不同broker之前可以迁移数据，使用kafka自带的kafka-reassign-partitions.sh脚本工具实现。
 
 
-> https://www.toutiao.com/a6513706403587162638/?tt_from=mobile_qq&utm_campaign=client_share&timestamp=1520390042&app=news_article&utm_source=mobile_qq&iid=27068802467&utm_medium=toutiao_ios
+> https://www.toutiao.com/a6513706403587162638/tt_from=mobile_qq&utm_campaign=client_share&timestamp=1520390042&app=news_article&utm_source=mobile_qq&iid=27068802467&utm_medium=toutiao_ios
 
 
