@@ -45,6 +45,18 @@ consumer Reabalance算法
 - 2) Splite Brain每个Cosumer分别单独通过zookeeper判断哪些Broker和consumer宕机，同时consumer在同一时刻从zookeeper看到的view可能不完全一样，这是由zookeeper的特性决定
 - 3) 调整结果不可控所有consumer分别进行rebalance，彼此不知道对应的Rebalance是否成功
 
+### Low Level consumer
+使用Low level consumer(simple consumer)的主要原因是，用户希望比consumer group更好的控制数据消费，如：
+
+- 1)同一个消息读多次，方便replay
+- 2)只消费某个Topic的部分Partition
+- 3)管理事务，从而确保每条消息被处理一次(exactly once)与High level consumer相对，low level consumer要求用户做大量的额外工作
+- 4)在应用程序中跟踪处理offset，并决定下一条消费哪一条消息
+- 5）获知每个partition的leader
+- 6)处理leader的变化
+- 7)处理多consumer的协作
+
+
 
 
 
