@@ -56,6 +56,23 @@ consumer Reabalance算法
 - 6)处理leader的变化
 - 7)处理多consumer的协作
 
+## kafka consumer offset management
+
+offset 是一条消息的唯一标示符
+
+### simple consumer （low level consumer）
+
+#### 手工管理offset
+
+- 1)每次从特定partition的特定offset开始fetch特定大小的消息
+- 2)完全由consumer应用程序决定下一次fetch的起始offset
+
+主要：如果你设置100byte，你将拿到100byte,如果一条消息超过100byte，将无法拿到任何的消息
+
+
+
+
+
 
 
 
