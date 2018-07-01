@@ -39,4 +39,13 @@ consumer Reabalance算法
 - 4)解除Ci对原来分配的Partition的消费权(i从0开始) 
 - 5)将第ixN到N-1个partition分配给Ci
 
+### Consumer Rebalance 算法缺陷及改进
+
+- 1) Herd Eddect 任何Broker或者consumer的增减都会触发搜索有的Consumer的Rebalance
+- 2) Splite Brain每个Cosumer分别单独通过zookeeper判断哪些Broker和consumer宕机，同时consumer在同一时刻从zookeeper看到的view可能不完全一样，这是由zookeeper的特性决定
+- 3) 调整结果不可控所有consumer分别进行rebalance，彼此不知道对应的Rebalance是否成功
+
+
+
+
 
