@@ -85,6 +85,20 @@ FetchRequest req = new FetchRequestBuilder().clientId(clientID).addFetch(topic,1
 其中： .addFetch(topic,0,0L,10000) 第3个位置为偏移量，第4个位置为读取大小
 ```
 
+### high level consumer
+
+#### 自动管理offset
+ - 1)auto.commit.enable=true
+ - 2)auto.commit.interval.ms= 60x 1000
+#### 自动管理offset
+- 1)consumerConnector.commitOffsets()
+#### offset存储
+- 1)offsets.storage=zookeeper
+- 2)dual.comit.enabled=true
+
+
+
+
 
 
 
