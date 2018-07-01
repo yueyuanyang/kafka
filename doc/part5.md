@@ -31,3 +31,12 @@
 
 ![kakfa_7]()
 
+### High Level consumer Rebalance
+consumer Reabalance算法
+- 1)将目标Topic下的所有Partition排序，存于Pt
+- 2)对于consumer Group 下所有consumer排序，存于Cg,第i个consumer记为Ci
+- 3)N=size(Pt)/size(Cg),向上取整
+- 4)解除Ci对原来分配的Partition的消费权(i从0开始) 
+- 5)将第ixN到N-1个partition分配给Ci
+
+
