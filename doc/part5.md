@@ -68,7 +68,22 @@ offset 是一条消息的唯一标示符
 - 2)完全由consumer应用程序决定下一次fetch的起始offset
 
 主要：如果你设置100byte，你将拿到100byte,如果一条消息超过100byte，将无法拿到任何的消息
+simple(
+    val host:String,
+    val port : Int,
+    val soTimeout : Int,
+    val bufferSize : Int,
+    val clientId : String
+)
 
+#### kafka simple实战
+
+![kafka_8]()
+```
+FetchRequest req = new FetchRequestBuilder().clientId(clientID).addFetch(topic,1,0L,10000)..addFetch(topic,2,0L,10000)
+.addFetch(topic,0,0L,10000).builder();
+其中： .addFetch(topic,0,0L,10000) 第3个位置为偏移量，第4个位置为读取大小
+```
 
 
 
