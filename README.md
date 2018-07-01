@@ -11,3 +11,9 @@
 ## 第二部分 
 ### kafka运维
 1. [kafka 数据迁移实践](https://github.com/yueyuanyang/kafka/blob/master/operation/part1.md)
+
+
+
+## 第三部分 kafka 视频整理
+
+1. [kafka consumer](https://github.com/yueyuanyang/kafka/blob/master/doc/part4.md)
