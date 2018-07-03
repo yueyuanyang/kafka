@@ -21,3 +21,5 @@
 ## 第四部分 kafka 权威指南
 
 1. [kafka 命令整理](https://github.com/yueyuanyang/kafka/blob/master/guide/part1.md)
+
+2. [kafka 监控整理](https://github.com/yueyuanyang/kafka/blob/master/guide/part2.md)
