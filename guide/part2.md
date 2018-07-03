@@ -6,7 +6,7 @@
 - 第三方监控
 - cmdline-jmxclient(命令行)
 
-## JMX 监控
+## 第一种：JMX 监控
 
 Kafka可以配置使用JMX进行运行状态的监控，既可以通过JDK自带Jconsole来观察结果，也可以通过Java API的方式来.
 
@@ -30,7 +30,7 @@ fi
 ![p2](https://github.com/yueyuanyang/kafka/blob/master/guide/img/p2.png)
 
 
-java 代码实现
+## 第二种：java 代码实现
 
 ```
 
@@ -109,7 +109,7 @@ public class KafkaDataProvider{
 
 ```
 
-### 其他工具
+### 第三种：其他第三方工具
 
 除了自己编写定制化的监控程序外
 ```
@@ -126,7 +126,7 @@ java -cp KafkaOffsetMonitor-assembly-0.2.0.jar com.quantifind.kafka.offsetapp.Of
 Mx4jLoader
 ```
 
-### 命令行的形式来查看某项数据
+### 第四种：命令行的形式来查看某项数据
 
 也可以通过命令行的形式来查看某项数据，不过这里要借助一个jar包：cmdline-jmxclient-0.xx.3.jar，这个请自行下载，网上很多。 将这个jar放入某一目录，博主这里放在了linux系统下的/root/util目录中，以offset举例： 
 
