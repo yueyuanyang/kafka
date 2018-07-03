@@ -23,6 +23,11 @@ fi
 > JMX_PORT=9999 bin/kafka-server-start.sh -daemon config/server.properties
 
 ### 步骤二：通过Jconsole测试时候可以连接
+
+![p1](https://github.com/yueyuanyang/kafka/blob/master/guide/img/p1.png)
+
+![p2](https://github.com/yueyuanyang/kafka/blob/master/guide/img/p2.png)
+
 ```
 
 public class KafkaDataProvider{
