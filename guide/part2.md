@@ -4,6 +4,7 @@
 
 - JMX监控
 - 第三方监控
+- cmdline-jmxclient(命令行)
 
 ## JMX 监控
 
@@ -124,5 +125,23 @@ java -cp KafkaOffsetMonitor-assembly-0.2.0.jar com.quantifind.kafka.offsetapp.Of
 
 Mx4jLoader
 ```
+
+### 命令行的形式来查看某项数据
+
+也可以通过命令行的形式来查看某项数据，不过这里要借助一个jar包：cmdline-jmxclient-0.xx.3.jar，这个请自行下载，网上很多。 将这个jar放入某一目录，博主这里放在了linux系统下的/root/util目录中，以offset举例： 
+
+0.8.1.x版-读取topic=default_channel_kafka_zzh_demo,partition=0的Value值：
+
+```
+java -jar cmdline-jmxclient-0.10.3.jar - xx.101.130.1:9999 
+'"kafka.log":type="Log",name="default_channel_kafka_zzh_demo-0-LogEndOffset"' Value
+```
+
+0.8.2.x版-读取topic=default_channel_kafka_zzh_demo,partition=0的Value值：
+
+```
+java -jar cmdline-jmxclient-0.10.3.jar - xx.101.130.1:9999 kafka.log:type=Log,name=LogEndOffset,topic=default_channel_kafka_zzh_demo,partition=0
+```
+## JMX 业务标准
 
 
