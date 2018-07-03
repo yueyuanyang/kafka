@@ -173,17 +173,12 @@ kafka使用两个线程处理客户端的请求
 - 请求处理器线程池:接受来自客户端的请求，包括：从磁盘读取消息和往磁盘写入消息
 
 表3： 请求处理器空闲率
-
 | 度量指标名称 | Request handler average idle percentage |
 | - | :-: |
-| JMX MBean | kafka.controller:type=kafkaRequestHandlerPool,name=RequestHandlerAvglePercent |
+| JMX MBean | kafka.server:type=kafkaRequestHandlerPool,name=RequestHandlerAvglePercent |
 | 值域区 | 从0到1的浮点数(包括1在内) |
 
-
-
-
-
-
+请求处理器平均空闲百分比这个度量表示请求处理器空闲时间的百分比。数值越低说明broker的负载越高。经验表明，如果空闲比低于20%，说明存在潜在的为题，如果低于10%说明性能问题
 
 
 
