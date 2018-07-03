@@ -180,5 +180,40 @@ kafka使用两个线程处理客户端的请求
 
 请求处理器平均空闲百分比这个度量表示请求处理器空闲时间的百分比。数值越低说明broker的负载越高。经验表明，如果空闲比低于20%，说明存在潜在的为题，如果低于10%说明性能问题
 
+#### 4.主题流入字节
+
+主题流入字节速率使用b/s来表示，在对broker接受生产者客户端消息进度时，这个指标很有用，该指标可以用于确定对集群进行扩展或展开其他与规模增长相关的工作。他可以用于评估一个broker是否比集群的其他broker接收更多的流量，如果出现这种情况，就需要对分区进行再平衡。
+
+表4： 主题流入字节度量指标
+| 度量指标名称 | Bytes in per second |
+| - | :-: |
+| JMX MBean | kafka.server:type=BrokerTopicMetrics,name=BytesInPerSec |
+| 值域区 | 速率为双精度浮点数，计数为整数 |
+
+**相关的指标**
+
+| 名称 | 含义 | 备注 
+| - | :-: | :-: |
+| EventType | 这是度量单位，在这里是"字节" | 与度量无关 |
+| RateUnit | 这是速率的时间段,在这里是"秒"| 与度量无关 |
+| OneMinutRate | 前1分钟的平均值 | |
+| FiveMinutRate | 前5分钟的平均值 | |
+| FiffteenMinutRate | 前15分钟的平均值 | |
+| MeanRate | 从broker启动到现在的平均值 | |
+| count | 从broker启动到现在的接收带流量的字节总数 | |
+
+#### 4.主题流出字节
+
+流出字节显示的是消费者从broker读取消息的速率
+
+表5： 主题流出字节度量指标
+| 度量指标名称 | Bytes out per second |
+| - | :-: |
+| JMX MBean | kafka.server:type=BrokerTopicMetrics,name=BytesOutPerSec |
+| 值域区 | 速率为双精度浮点数，计数为整数 |
+
+很多kafka 的流出速率可以达到流入速率的6倍，这归功于kakfa对多消费客户端的支持。
+
+
 
 
