@@ -146,13 +146,43 @@ java -jar cmdline-jmxclient-0.10.3.jar - xx.101.130.1:9999 kafka.log:type=Log,na
 
 #### broker的度量指标
 
+#### 1.对应的非同步分区
 表1： 度量指标和对应的非同步分区
 
-| 名称 | under-replicated partitions |
+| 度量指标名称 | under-replicated partitions |
 | - | :-: |
 | JMX MBean | kafka.server:type=ReplicaManager,name=UnderReplicatedPartition|
-| Hermione Granger | Gryffindor |
-| Draco Malfoy | Slytherin | 
+| 值域区 | 非负整数 |
+
+
+#### 2. 活跃控制器数量
+
+该指标表示broker是否就是当前的集群控制器，其值可以是0或1。如果1，表示broker就是当前的控制器。任何时候都只有一个控制器，而且这个broker就是当前的控制器。如果出现了两个控制器，说明一个本该退出的线程被阻塞
+
+表2： 度量指标和对应的非同步分区
+
+| 度量指标名称 | Active controll count |
+| - | :-: |
+| JMX MBean | kafka.controller:type=kafkaController,name=ActiveControllerCount |
+| 值域区 | 0或1 |
+
+#### 3. 请求处理器空闲率
+kafka使用两个线程处理客户端的请求
+
+- 网络处理器线程池：负责网络的读入和写出数据，没有太多工作，不用担心出问题
+- 请求处理器线程池:接受来自客户端的请求，包括：从磁盘读取消息和往磁盘写入消息
+
+表3： 请求处理器空闲率
+
+| 度量指标名称 | Request handler average idle percentage |
+| - | :-: |
+| JMX MBean | kafka.controller:type=kafkaRequestHandlerPool,name=RequestHandlerAvglePercent |
+| 值域区 | 从0到1的浮点数(包括1在内) |
+
+
+
+
+
 
 
 
