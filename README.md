@@ -17,3 +17,7 @@
 ## 第三部分 kafka 视频整理
 
 1. [kafka consumer](https://github.com/yueyuanyang/kafka/blob/master/doc/part4.md)
+
+## 第四部分 kafka 权威指南
+
+1. [kafka consumer](https://github.com/yueyuanyang/kafka/blob/master/doc/part4.md)
