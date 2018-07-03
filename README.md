@@ -20,4 +20,4 @@
 
 ## 第四部分 kafka 权威指南
 
-1. [kafka consumer](https://github.com/yueyuanyang/kafka/blob/master/doc/part4.md)
+1. [kafka 命令整理](https://github.com/yueyuanyang/kafka/blob/master/guide/part1.md)
