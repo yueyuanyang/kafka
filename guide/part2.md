@@ -144,4 +144,16 @@ java -jar cmdline-jmxclient-0.10.3.jar - xx.101.130.1:9999 kafka.log:type=Log,na
 ```
 ## JMX 业务标准
 
+#### broker的度量指标
+
+表1： 度量指标和对应的非同步分区
+
+| 名称 | under-replicated partitions |
+| - | :-: |
+| JMX MBean | kafka.server:type=ReplicaManager,name=UnderReplicatedPartition|
+| Hermione Granger | Gryffindor |
+| Draco Malfoy | Slytherin | 
+
+
+
 
