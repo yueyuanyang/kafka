@@ -215,6 +215,52 @@ kafka使用两个线程处理客户端的请求
 
 很多kafka 的流出速率可以达到流入速率的6倍，这归功于kakfa对多消费客户端的支持。
 
+#### 5.主题流入的消息
+
+消息速率则以每秒生成小消息个数方式来表示流量
+
+表6： 主题流入消息度量指标
+
+| 度量指标名称 | Message in per second |
+| - | :-: |
+| JMX MBean | kafka.server:type=BrokerTopicMetrics,name=MessageInPerSec |
+| 值域区 | 速率为双精度浮点数，计数为整数 |
+
+为什么没有消息的流出速率？
+
+因为在消息被读取时，broker将整个消息批次发送给消费者，并没有展开批次，也就不会去计算每个批次包含了多少个消息，所以，broker也不知道发送了多少个消息。broker为此提供了一个度量指标叫做每秒获取次数，它指的是请求速率,而不是消息个数。
+
+#### 6.分区数量
+
+broker的分区数量一般不会经常发生改变，它是指分配给broker的分区总数。它包括broker的每一个分区副本，不管首领还是跟随者
+
+如果一个集群启用了自创建主题的功能，那么监控这个指标会变的很有意思。
+
+表6： 分区数量度量指标
+
+| 度量指标名称 | Partition count |
+| - | :-: |
+| JMX MBean | kafka.server:type=ReplicaManager,name=PartitionCount |
+| 值域区 | 非负整数 |
+
+
+#### 7.首领数量
+
+该指标表示broker拥有的首领分区数量，该度量指标也应该在整个集群的broker上保持均等。
+
+表7： 首领数量度量指标
+
+| 度量指标名称 | Leader count |
+| - | :-: |
+| JMX MBean | kafka.server:type=ReplicaManager,name=LeaderCount |
+| 值域区 | 非负整数 |
+
+可以使用该指标与分区数量一起计算出broker首领分区的百分比。一个集均衡的集群，如果他的复制系数为2,那么所有的broker都应该差不多是他们的50%分区的首领
+如果复制系数是3,这个白分比应该降到33%。
+
+
+
+
 
 
 
