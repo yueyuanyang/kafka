@@ -207,6 +207,7 @@ kafka使用两个线程处理客户端的请求
 流出字节显示的是消费者从broker读取消息的速率
 
 表5： 主题流出字节度量指标
+
 | 度量指标名称 | Bytes out per second |
 | - | :-: |
 | JMX MBean | kafka.server:type=BrokerTopicMetrics,name=BytesOutPerSec |
