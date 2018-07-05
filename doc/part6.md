@@ -50,6 +50,7 @@ message中的物理结构为：
 ![kafka1_4]()
 
 **参数说明：**
+
 | 关键字  | 解释说明  |
 |---|---|
 | 8 byte offset  | 在parition(分区)内的每条消息都有一个有序的id号，这个id号被称为偏移(offset),它可以唯一确定每条消息在parition(分区)内的位置。offset表示partiion的第多少message  |
