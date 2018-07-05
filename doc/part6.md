@@ -18,7 +18,7 @@
 
 kafka的message是以topic为基本单位，不同topic之间是相互独立的。每个topic又可分为几个不同的partition，每个partition存储一部的分message。topic与partition的关系如下：
 
-![kafka1_1]()
+![kafka1_1](https://github.com/yueyuanyang/kafka/blob/master/doc/img/kafka1_1.png)
 
 **其中，partition是以文件夹的形式存储在具体Broker本机上。**
 
@@ -34,11 +34,11 @@ kafka的message是以topic为基本单位，不同topic之间是相互独立的�
 - segment file 组成：由2部分组成，分别为index file和data file，这两个文件是一一对应的，后缀”.index”和”.log”分别表示索引文件和数据文件；
 - segment file 命名规则：partition的第一个segment从0开始，后续每个segment文件名为上一个segment文件最后一条消息的offset,ofsset的数值最大为64位（long类型），20位数字字符长度，没有数字用0填充。如下图所示：
 
-![kafka1_2]()
+![kafka1_2](https://github.com/yueyuanyang/kafka/blob/master/doc/img/kafka1_2.png)
 
 关于segment file中index与data file对应关系图，这里我们选用网上的一个图片，如下所示：
 
-![kafka1_3]()
+![kafka1_3](https://github.com/yueyuanyang/kafka/blob/master/doc/img/kafka1_3.png)
 
 segment的索引文件中存储着大量的元数据，数据文件中存储着大量消息，索引文件中的元数据指向对应数据文件中的message的物理偏移地址。以索引文件中的3，497为例，在数据文件中表示第3个message（在全局partition表示第368772个message），以及该消息的物理偏移地址为497。
 
@@ -47,7 +47,7 @@ segment的索引文件中存储着大量的元数据，数据文件中存储着�
 #### 2.2.message文件
 message中的物理结构为：
 
-![kafka1_4]()
+![kafka1_4](https://github.com/yueyuanyang/kafka/blob/master/doc/img/kafka1_4.png)
 
 **参数说明：**
 
@@ -66,7 +66,7 @@ message中的物理结构为：
 
 Partition数据文件包含了若干上述格式的message，按照offset由小到大排列在一起，它实现的类是FileMessageSet，类图如下：
 
-![kafka1_5]()
+![kafka1_5](https://github.com/yueyuanyang/kafka/blob/master/doc/img/kafka1_5.png)
 
 它的主要方法如下：
 
@@ -103,7 +103,7 @@ Partition数据文件包含了若干上述格式的message，按照offset由小�
 - position：表示该条message在数据文件中的绝对位置。只要打开文件并移动文件指针到这个position就可以读取对应的message了。
 在kafka中，索引文件的实现类为OffsetIndex，它的类图如下：
 
-![kafka1_6]()
+![kafka1_6](https://github.com/yueyuanyang/kafka/blob/master/doc/img/kafka1_6.png)
 
 **主要的方法有：**
 
