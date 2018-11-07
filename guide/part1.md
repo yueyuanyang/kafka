@@ -14,7 +14,7 @@
 
 **示例：创建一个test主题，副本为2，分区数为8**
 ```
-kafka-topic.sh --zookeeper 10.0.0.201:2181 --create --topic test --replication-factor 2 --partition 8
+kafka-topic.sh --zookeeper 10.0.0.201:2181 --create --topic test --replication-factor 2 --partitions 3
 ```
 #### 2. 增加分区(--alter)
 
